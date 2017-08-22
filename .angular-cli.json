@@ -19,6 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "assets/style/animate.css",
+        "assets/style/material.theme.scss",
         "styles.scss"
       ],
       "scripts": [],

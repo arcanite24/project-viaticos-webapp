@@ -1,0 +1,26 @@
+<h1 mdDialogTitle>{{factura.name}}</h1>
+
+<md-dialog-content fxLayout="column" fxLayoutAlign="center center">
+  <md-progress-bar mode="indeterminate" *ngIf="loader"></md-progress-bar>
+  <md-select [(ngModel)]="factura.status" [disabled]="loader" placeholder="Estado de la factura">
+    <md-option [value]="1">Completado</md-option>
+    <md-option [value]="2">No completado</md-option>
+    <md-option [value]="3">Advertencia</md-option>
+  </md-select>
+  <md-input-container class="w100">
+    <textarea mdInput placeholder="Notas sobre la factura" [disabled]="loader" [(ngModel)]="factura.notas" name="notas"></textarea>
+  </md-input-container>
+  <div class="buttons-container">
+    <input type="file" class="file-input" id="fileXML" [disabled]="loader" #fileXML>
+    <label for="fileXML">XML <md-icon>grid_on</md-icon></label>
+  </div>
+  <div class="buttons-container">
+      <input type="file" class="file-input" id="filePDF" [disabled]="loader" #filePDF>
+      <label for="filePDF">PDF <md-icon>picture_as_pdf</md-icon></label>
+  </div>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-button md-dialog-close>Cerrar</button>
+  <button md-button [disabled]="loader" color="primary" (click)="close(fileXML.files[0], filePDF.files[0])">Editar</button>
+</md-dialog-actions>

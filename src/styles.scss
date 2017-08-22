@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+// Material DataTable
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+@function sp($sp) {
+  @return ($sp / 14) * 1rem;
+}
+
+// Reset
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+}
+*:focus {outline:0 !important;}
+
+// Colors
+.c54 {color: rgba(0, 0, 0, 0.54);}
+.c87 {color: rgba(0, 0, 0, 0.87);}
+.icon-white {color: white;}
+.b-eee { background-color: #eee; }
+.w100 { width: 100%; }
+
+// Flex Helper
+.expander { flex: 1 1 auto; }
+.flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+// CRUD Helpers
+.crud-container { padding: 1rem; }
+.crud-add-button { margin-left: auto; }
+.crud-subtitles { margin-bottom: 1rem; }
+.crud-titles {
+  h1 { color: rgba(0, 0, 0, 0.87); font-weight: 300; }
+  h3 { color: rgba(0, 0, 0, 0.54); font-weight: 100; }
+  margin-bottom: 1rem;
+}
+
+// md-table
+ngx-datatable, ngx-datatable * {
+  transition: height 1s ease-in-out;
+}
+
+.ng-table-cell {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: sp(13);
+}
+
+.ng-table-header {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: sp(12);
+}

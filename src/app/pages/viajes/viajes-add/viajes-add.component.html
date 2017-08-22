@@ -1,0 +1,63 @@
+<h1 mdDialogTitle>Nuevo Viaje</h1>
+
+<form (ngSubmit)="addViaje(addData)">
+<md-dialog-content>
+  <div class="viaje-destination" fxLayout="column" fxLayoutAlign="center center">
+    <md-input-container class="w100">
+      <input type="text" mdInput placeholder="Nombre del viaje" [(ngModel)]="travelName" name="travelName">
+    </md-input-container>
+    <md-input-container class="w100">
+      <input type="text" mdInput placeholder="Busca un destino" #searchTo>
+    </md-input-container>
+    <md-input-container class="w100">
+      <input type="text" mdInput placeholder="¿Desde dónde inicias el viaje?" #searchFrom>
+    </md-input-container>
+    <h4 class="c54">¿En qué viajas?</h4>
+    <div class="transport-select-container" fxLayout="row" fxLayoutAlign="center center" class="w100">
+      <div class="transport-button" fxFlex="33" fxLayout="column" fxLayoutAlign="center center" (click)="transport = 'AVION'" [ngClass]="{'transport-button-selected': transport == 'AVION'}">
+        <md-icon>airplanemode_active</md-icon>
+        <span>Avión</span>
+      </div>
+      <div class="transport-button" fxFlex="33" fxLayout="column" fxLayoutAlign="center center" (click)="transport = 'AUTO'" [ngClass]="{'transport-button-selected': transport == 'AUTO'}">
+        <md-icon>directions_car</md-icon>
+        <span>Auto</span>
+      </div>
+      <div class="transport-button" fxFlex="33" fxLayout="column" fxLayoutAlign="center center" (click)="transport = 'BUS'" [ngClass]="{'transport-button-selected': transport == 'BUS'}">
+        <md-icon>directions_bus</md-icon>
+        <span>Autobus</span>
+      </div>
+    </div>
+    <div class="plane-container" *ngIf="transport == 'AVION'" fxLayout="column" fxLayoutAlign="center center" class="w100">
+      <md-input-container class="w100" [hidden]="(!latitudeFrom && !latitude) || (!latitudeFrom || !latitude)">
+        <input type="number" placeholder="Costo del vuelo" [(ngModel)]="flightPrice" name="fligtPrice" mdInput>
+      </md-input-container>
+      <md-input-container class="w100" [hidden]="(!latitudeFrom && !latitude) || (!latitudeFrom || !latitude)">
+        <textarea type="text" placeholder="Notas adicionales" [(ngModel)]="flightDetails" name="flightDetails" name="flightDetails" mdInput></textarea>
+      </md-input-container>
+      <h2 class="c87 w100" *ngIf="flightPrice && flightPrice > 0">Costo del vuelo: <strong>${{flightPrice | number}}</strong></h2>
+    </div>
+    <div class="car-container" *ngIf="transport == 'AUTO'">
+
+    </div>
+    <div class="bus-container" *ngIf="transport == 'BUS'">
+      
+    </div>
+    <div class="hotel-container-need" fxLayout="column">
+      <md-slide-toggle [(ngModel)]="needHotel" name="needHotel">¿Necesito Hotel?</md-slide-toggle>
+    </div>
+    <div class="hotel-container" *ngIf="needHotel" fxLayout="column" class="w100">
+      <md-input-container class="w100">
+        <input type="text" mdInput placeholder="Gasto en hotel $" [(ngModel)]="hotelPrice" name="hotelPrice">
+      </md-input-container>
+      <md-input-container class="w100">
+        <input type="text" mdInput placeholder="Datos adicionales, Ej: Nombre del hotel" [(ngModel)]="hotelInfo" name="hotelInfo">
+      </md-input-container>
+    </div>
+  </div>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-button md-dialog-close>Cancelar</button>
+  <button md-button color="primary" type="submit">Agregar</button>
+</md-dialog-actions>
+</form>

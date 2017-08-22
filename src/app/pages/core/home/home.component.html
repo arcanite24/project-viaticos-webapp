@@ -1,0 +1,35 @@
+<div class="root-container" fxLayout="row" fxLayoutWrap>
+    <div class="toolbar-container" fxFlex="100">
+      <md-toolbar color="primary">
+        <button (click)="sidenav.toggle()" fxHide.gt-xs md-icon-button><md-icon>menu</md-icon></button>
+        <span class="toolbar-brand">VIATICOS</span>
+      </md-toolbar>
+    </div>
+    <md-sidenav-container class="main-sidenav-container b-eee" fxFlex="100">
+      <md-sidenav id="main-sidenav" mode="side" #sidenav opened>
+        <md-nav-list class="sidenav-list">
+          <h3 md-subheader>General</h3>
+          <a md-list-item [routerLink]="['/home', {outlets: {inner: 'dashboard'}}]" routerLinkActive="active-link">
+            <md-icon>home</md-icon> Inicio
+          </a>
+          <a md-list-item [routerLink]="['/home', {outlets: {inner: 'viajes'}}]" routerLinkActive="active-link">
+            <md-icon>terrain</md-icon> Viajes
+          </a>
+          <a md-list-item [routerLink]="['/home', {outlets: {inner: 'gastos-globales'}}]" routerLinkActive="active-link">
+            <md-icon>attach_money</md-icon> Gastos Globales
+          </a>
+          <a md-list-item [routerLink]="['/home', {outlets: {inner: 'facturas'}}]" routerLinkActive="active-link">
+            <md-icon>description</md-icon> Facturas
+          </a>
+          <a md-list-item [routerLink]="['/home', {outlets: {inner: 'facturas-admin'}}]" routerLinkActive="active-link" *ngIf="isAdmin">
+            <md-icon>assignment_turned_in</md-icon> Administrar Facturas
+          </a>
+          <md-divider></md-divider>
+          <a md-list-item (click)="logout()">
+            <md-icon>exit_to_app</md-icon> Cerrar Sesión
+          </a>
+        </md-nav-list>
+      </md-sidenav>
+      <router-outlet name="inner"></router-outlet>
+    </md-sidenav-container>
+  </div>

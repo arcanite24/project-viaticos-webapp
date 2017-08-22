@@ -1,0 +1,28 @@
+span.toolbar-brand {
+  letter-spacing: 7px;
+  font-weight: 100;
+}
+
+#main-sidenav {
+  background-color: #2d2d2d;
+  width: 250px;
+  color: white;
+}
+
+.root-container {
+  overflow-x: hidden;
+  background-color: #eee;
+}
+
+.main-sidenav-container {
+  height: calc(100vh - 64px);
+}
+
+.sidenav-list {
+  * { color: #919191; }
+  a md-icon { margin-right: 1rem; }
+}
+
+.active-link {
+  background-color: rgba(255, 255, 255, 0.1);
+}

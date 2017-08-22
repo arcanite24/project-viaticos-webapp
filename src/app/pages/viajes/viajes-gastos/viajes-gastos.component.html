@@ -1,0 +1,24 @@
+<h1 mdDialogTitle>Gastos</h1>
+
+<md-dialog-content fxLayout="column">
+  <button md-raised-button color="accent" (click)="openAddGasto()">Agregar Gasto</button>
+  <md-list>
+    <md-list-item *ngFor="let gasto of gastos | async">
+      <md-icon md-list-icon *ngIf="gasto.category == 'FOOD'" class="c54">restaurant</md-icon>
+      <md-icon md-list-icon *ngIf="gasto.category == 'FLIGHTS'" class="c54">airplanemode_active</md-icon>
+      <md-icon md-list-icon *ngIf="gasto.category == 'GAS'" class="c54">local_gas_station</md-icon>      
+      <md-icon md-list-icon *ngIf="gasto.category == 'UBER'" class="c54">directions_car</md-icon>
+      <md-icon md-list-icon *ngIf="gasto.category == 'HOSPEDAJE'" class="c54">home</md-icon>
+      <md-icon md-list-icon *ngIf="gasto.category == 'SERVICES'" class="c54">credit_card</md-icon>
+      <md-icon md-list-icon *ngIf="gasto.category == 'OTHERS'" class="c54">more_horiz</md-icon>
+      <button md-icon-button mdTooltip="Editar gasto" (click)="openEditGasto(gasto)"><md-icon>border_color</md-icon></button>
+      <button md-icon-button mdTooltip="Borrar gasto" (click)="deleteGasto(gasto.$key)"><md-icon>delete</md-icon></button>
+      <h4 md-line>{{gasto.name}}</h4>
+      <p md-line><strong>${{gasto.amount | number}}</strong> - <span class="c54">{{gasto.date}}</span></p>
+    </md-list-item>
+  </md-list>
+</md-dialog-content>
+
+<md-dialog-actions>
+    <button md-button md-dialog-close>Cerrar</button>
+</md-dialog-actions>

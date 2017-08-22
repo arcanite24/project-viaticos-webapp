@@ -1,0 +1,15 @@
+<form #addForm="ngForm" (ngSubmit)="edit(editData)">
+    <md-progress-bar mode="indeterminate" *ngIf="loader"></md-progress-bar>
+    <h3 mdDialogTitle>Editar Viaje</h3>
+  
+    <md-dialog-content fxLayout="column">
+      <md-input-container>
+        <input mdInput [(ngModel)]="editData.name" type="text" name="text" placeholder="Nombre del viaje" required>
+      </md-input-container>
+    </md-dialog-content>
+  
+    <md-dialog-actions>
+        <button md-button md-dialog-close>Cerrar</button>
+        <button md-button color="primary" type="submit" [disabled]="loader">Editar</button>
+    </md-dialog-actions>
+  </form>

@@ -1,0 +1,56 @@
+<form #addForm="ngForm" (ngSubmit)="add(addData)">
+    <md-progress-bar mode="indeterminate" *ngIf="loader"></md-progress-bar>
+    <h3 mdDialogTitle>Agregar Gasto</h3>
+  
+    <md-dialog-content fxLayout="column">
+      <md-input-container>
+        <input mdInput [(ngModel)]="addData.name" type="text" name="text" placeholder="Nombre del gasto/comercio" required>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="addData.desc" type="text" name="desc" placeholder="Datos adicionales/comentarios" required>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [(ngModel)]="addData.amount" type="number" name="amount" placeholder="Total $" required>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput [mdDatepicker]="picker" placeholder="Fecha" [(ngModel)]="addData.date" name="date">
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
+      </md-input-container>
+      <md-datepicker #picker></md-datepicker>
+      <div class="category-container flex-row" style="justify-content: space-around;">
+        <div class="icon-cat-container flex-col" (click)="addData.category = 'FOOD'" [ngClass]="{'selected-cat': addData.category == 'FOOD'}">
+          <md-icon class="c54">restaurant</md-icon>
+          <span>Comida</span>
+        </div>  
+        <div class="icon-cat-container flex-col" (click)="addData.category = 'FLIGHTS'" [ngClass]="{'selected-cat': addData.category == 'FLIGHTS'}">
+          <md-icon class="c54">airplanemode_active</md-icon>
+          <span>Vuelos</span>
+        </div>
+        <div class="icon-cat-container flex-col" (click)="addData.category = 'GAS'" [ngClass]="{'selected-cat': addData.category == 'GAS'}">
+          <md-icon class="c54">local_gas_station</md-icon>
+          <span>Gasolina</span>
+        </div>
+        <div class="icon-cat-container flex-col" (click)="addData.category = 'UBER'" [ngClass]="{'selected-cat': addData.category == 'UBER'}">
+          <md-icon class="c54">directions_car</md-icon>
+          <span>Uber</span>
+        </div>
+        <div class="icon-cat-container flex-col" (click)="addData.category = 'HOSPEDAJE'" [ngClass]="{'selected-cat': addData.category == 'HOSPEDAJE'}">
+          <md-icon class="c54">home</md-icon>
+          <span>Hospedaje</span>
+        </div>
+        <div class="icon-cat-container flex-col" (click)="addData.category = 'SERVICES'" [ngClass]="{'selected-cat': addData.category == 'SERVICES'}">
+          <md-icon class="c54">credit_card</md-icon>
+          <span>Servicios</span>
+        </div>
+        <div class="icon-cat-container flex-col" (click)="addData.category = 'OTHERS'" [ngClass]="{'selected-cat': addData.category == 'OTHERS'}">
+          <md-icon class="c54">more_horiz</md-icon>
+          <span>Otros</span>
+        </div>
+      </div>
+    </md-dialog-content>
+  
+    <md-dialog-actions>
+        <button md-button md-dialog-close>Cerrar</button>
+        <button md-button color="primary" type="submit" [disabled]="loader">Agregar</button>
+    </md-dialog-actions>
+  </form>

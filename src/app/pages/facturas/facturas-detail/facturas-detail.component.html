@@ -1,0 +1,12 @@
+<h1 mdDialogTitle>Factura</h1>
+
+<md-dialog-content fxLayout="column">
+  <h4 class="c87">{{factura.name}}</h4>
+  <p>{{factura.desc}}</p>
+  <a md-raised-button target="_blank" [href]="factura.pdf" color="primary" *ngIf="factura.xml">XML</a>
+  <a md-raised-button target="_blank" [href]="factura.xml" color="primary" *ngIf="factura.pdf">PDF</a>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-button md-dialog-close>Cerrar</button>
+</md-dialog-actions>

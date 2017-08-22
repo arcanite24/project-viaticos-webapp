@@ -1,0 +1,11 @@
+<h3 mdDialogTitle>Eliminar</h3>
+
+<md-dialog-content>
+  <md-progress-bar mode="indeterminate" *ngIf="loader"></md-progress-bar>
+  <h4>¿Estás seguro de borrar el viaje?</h4>
+</md-dialog-content>
+
+<md-dialog-actions>
+    <button md-button md-dialog-close color="warn">Cancelar</button>
+    <button md-button (click)="delete(data)" [disabled]="loader">Borrar</button>
+</md-dialog-actions>

@@ -1,0 +1,67 @@
+<div class="crud-container b-eee" fxLayout="column">
+    <div class="crud-titles" fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
+      <h1>Gastos Globales</h1>
+      <button md-fab (click)="openAdd()" style="margin-left: auto"><md-icon>add</md-icon></button>
+    </div>
+    <div class="crud-subtitles">
+      <p class="c54">Gastos no vinculados a un viaje.</p>
+    </div>
+    <md-progress-bar mode="indeterminate" *ngIf="loader"></md-progress-bar>
+    <ngx-datatable
+      class="material"
+      [rows]="allGastosArr"
+      [messages]="{'emptyMessage': 'No hay gastos globales registrados'}"
+      [columnMode]="'flex'"
+      [rowHeight]="'auto'"
+      [headerHeight]="40"
+      [footerHeight]="50"
+      [limit]="10">
+      <ngx-datatable-column name="Nombre" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="ng-table-cell">{{row.name}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Descripción" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="ng-table-cell">{{row.desc}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Fecha" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="ng-table-cell">{{row.date}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Monto" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="ng-table-cell"><strong>${{row.amount | number}}</strong></span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Categoría" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div [ngSwitch]="row.category">
+            <span *ngSwitchCase="'PLANE'">AVIÓN</span>
+            <span *ngSwitchCase="'FOOD'">COMIDA</span>
+            <span *ngSwitchCase="'FLIGHTS'">VUELOS</span>
+            <span *ngSwitchCase="'GAS'">GASOLINA</span>
+            <span *ngSwitchCase="'UBER'">UBER</span>
+            <span *ngSwitchCase="'HOSPEDAJE'">HOSPEDAJE</span>
+            <span *ngSwitchCase="'SERVICES'">SERVICIOS</span>
+            <span *ngSwitchCase="'OTHERS'">OTROS</span>
+            <span *ngSwitchDefault>CATEGORÍA NO ASIGNADA</span>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Acciones" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button md-icon-button mdTooltip="Editar" (click)="openEdit(row, row.$$index)"><md-icon class="c54">border_color</md-icon></button>
+          <button md-icon-button mdTooltip="Borrar" (click)="openDelete(row.$key, row.$$index)"><md-icon class="c54">delete</md-icon></button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>

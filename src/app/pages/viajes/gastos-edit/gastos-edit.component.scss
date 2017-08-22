@@ -1,0 +1,8 @@
+.selected-cat, .selected-cat * { color: #b64b4b; }
+.icon-cat-container { cursor: pointer; }
+.flex-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

@@ -1,0 +1,15 @@
+<h1 mdDialogTitle>Seleccionar gasto para pedir factura</h1>
+
+<md-dialog-content>
+  <md-progress-bar mode="indeterminate" *ngIf="loader"></md-progress-bar>
+  <h4 class="c87">Gastos</h4>
+  <md-radio-group [(ngModel)]="selectedGasto" fxLayout="column">
+    <md-radio-button *ngFor="let gasto of gastosArr" [value]="gasto" [disabled]="loader"><strong>{{gasto.name}}</strong> - {{gasto.date}} - ${{gasto.amount | number}}</md-radio-button>
+    <md-radio-button *ngFor="let gasto of globalesArr" [value]="gasto" [disabled]="loader"><strong>{{gasto.name}}</strong> - {{gasto.date}} - ${{gasto.amount | number}}</md-radio-button>
+  </md-radio-group>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-button md-dialog-close>Cancelar</button>
+  <button md-button color="primary" [disabled]="!selectedGasto" (click)="ref.close(selectedGasto)">Pedir factura</button>
+</md-dialog-actions>

@@ -1,0 +1,58 @@
+<div class="crud-container b-eee" fxLayout="column">
+    <div class="crud-titles" fxLayout="row" fxLayoutAlign="start center" fxLayoutWrap>
+      <h1>Viajes</h1>
+      <button md-fab (click)="openAdd()" style="margin-left: auto"><md-icon>add</md-icon></button>
+    </div>
+    <div class="crud-subtitles">
+      <p class="c54">Para agregar gastos a un viaje, hazlo desde la sección de acciones de cada viaje. Dicha sección está situada en la parte derecha de la tabla.</p>
+    </div>
+    <md-progress-bar mode="indeterminate" *ngIf="loader"></md-progress-bar>
+    <ngx-datatable
+      class="material"
+      [rows]="allViajesArr"
+      [messages]="{'emptyMessage': 'No hay viajes registrados'}"
+      [columnMode]="'flex'"
+      [rowHeight]="'auto'"
+      [headerHeight]="40"
+      [footerHeight]="50"
+      [limit]="10">
+      <ngx-datatable-column name="Nombre" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="ng-table-cell">{{row.name}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Destino" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="ng-table-cell">{{row.placeTo.formatted_address}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Desde" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="ng-table-cell">{{row.placeFrom.formatted_address}}</span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Transporte" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="transport-container flex-row">
+            <md-icon *ngIf="row.transport == 'AVION'" class="c54">airplanemode_active</md-icon>
+            <md-icon *ngIf="row.transport == 'BUS'" class="c54">directions_bus</md-icon>
+            <md-icon *ngIf="row.transport == 'AUTO'" class="c54">directions_car</md-icon>
+            <span class="ng-table-cell">{{row.transport}}</span>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Acciones" [flexGrow]="1">
+        <ng-template let-column="column" ngx-datatable-header-template>{{column.name}}</ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button md-icon-button mdTooltip="Editar" (click)="openEdit(row, row.$$index)"><md-icon class="c54">border_color</md-icon></button>
+          <button md-icon-button mdTooltip="Borrar" (click)="openDelete(row.$key, row.$$index)"><md-icon class="c54">delete</md-icon></button>
+          <button md-icon-button mdTooltip="Detalles" (click)="openDetail(row)"><md-icon class="c54">details</md-icon></button>
+          <button md-icon-button mdTooltip="Gastos" (click)="openGastos(row.$key)"><md-icon class="c54">shopping_cart</md-icon></button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>

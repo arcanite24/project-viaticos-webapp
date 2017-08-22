@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+@import 'src/assets/style/material.theme.scss';
+
+.login-container {
+  height: 100vh;
+  width: 100%;
+  background-color: mat-color($v-primary);
+}
+
+img.logo-img { width: 100%; }
+.login-button { margin-top: 1rem; }

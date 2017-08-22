@@ -1,0 +1,16 @@
+<h1 mdDialogTitle>{{viaje.name}}</h1>
+
+<md-dialog-content class="flex-col">
+  <p><strong>Destino: </strong>{{viaje.placeTo.formatted_address}}</p>
+  <p><strong>Lugar de partida: </strong>{{viaje.placeFrom.formatted_address}}</p>
+  <p><strong>Método de transporte: </strong> {{viaje.transport}}
+    <md-icon *ngIf="viaje.transport == 'AVION'" class="c54">airplanemode_active</md-icon>
+    <md-icon *ngIf="viaje.transport == 'BUS'" class="c54">directions_bus</md-icon>
+    <md-icon *ngIf="viaje.transport == 'AUTO'" class="c54">directions_car</md-icon>
+  </p>
+  <p *ngIf="viaje.hotel"><strong>Hotel: </strong> ${{viaje.hotel.price | number}} <br><span class="c54">{{viaje.hotel.info}}</span></p>
+</md-dialog-content>
+
+<md-dialog-actions>
+  <button md-button md-dialog-close>Cerrar</button>
+</md-dialog-actions>

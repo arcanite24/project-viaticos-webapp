@@ -1,0 +1,19 @@
+<form (ngSubmit)="login(loginData.username, loginData.password)">
+  <div class="login-container" fxLayout="column" fxLayoutAlign="center center">
+    <div class="logo-parent" fxLayout="row" fxLayoutAlign="center center">
+      <img src="assets/img/logo.png" alt="Logo" fxFlex.xs="90" fxFlex.sm="60" fxFlex.gt-sm="50">
+    </div>
+    <div class="form-container w100" fxLayout="row" fxLayoutAlign="center center">
+      <md-card class="login-form" fxFlex.xs="90" fxFlex.sm="60" fxFlex.gt-sm="30" fxLayout="column" fxLayoutAlign="center center">
+        <md-progress-bar *ngIf="loader" mode="indeterminate"></md-progress-bar>
+        <md-input-container class="w100">
+          <input type="text" placeholder="Email" mdInput [(ngModel)]="loginData.username" required name="username" [disabled]="loader">
+        </md-input-container>
+        <md-input-container class="w100">
+          <input type="password" placeholder="Contraseña" mdInput [(ngModel)]="loginData.password" required name="password" [disabled]="loader">
+        </md-input-container>
+      </md-card>
+    </div>
+    <button md-raised-button color="accent" class="login-button" type="submit" [disabled]="loader">Iniciar Sesión</button>
+  </div>
+</form>
